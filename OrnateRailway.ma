@@ -1,30 +1,31 @@
 //Maya ASCII 2027 scene
 //Name: OrnateRailway.ma
-//Last modified: Fri, Sep 25, 2026 11:55:00 AM
+//Last modified: Mon, Sep 28, 2026 10:39:52 AM
 //Codeset: 1252
 requires maya "2027";
 requires "stereoCamera" "10.0";
-requires "mtoa" "5.6.1.1";
+requires -nodeType "aiOptions" -nodeType "aiAOVDriver" -nodeType "aiAOVFilter" -nodeType "aiAreaLight"
+		 -nodeType "aiNormalMap" -nodeType "aiImagerDenoiserOidn" "mtoa" "5.6.1.1";
 currentUnit -l centimeter -a degree -t film;
 fileInfo "application" "maya";
 fileInfo "product" "Maya 2027";
 fileInfo "version" "2027";
 fileInfo "cutIdentifier" "202604221258-70da84b25e";
 fileInfo "osv" "Windows 11 Enterprise v2009 (Build: 26200)";
-fileInfo "UUID" "65172837-46C7-8C0F-45D6-91AC8B94B769";
+fileInfo "UUID" "88A488CC-471A-6A38-AECA-5195104748EF";
 fileInfo "license" "education";
 createNode transform -s -n "persp";
 	rename -uid "4B713E21-4C4F-D914-B8CE-75BFD2304DEC";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 3.1948910804028658 0.86606967409857705 -1.1254142614171769 ;
-	setAttr ".r" -type "double3" 177.95851014443363 -2435.5295296388176 -180.00000000189132 ;
+	setAttr ".t" -type "double3" 0.61366075069331838 1.218810631497842 -0.47476007866562919 ;
+	setAttr ".r" -type "double3" 174.95851014601629 -2463.9295296384635 -180.00000000028686 ;
 	setAttr ".rp" -type "double3" -6.9388939039072284e-18 -2.2204460492503131e-16 -8.8817841970012523e-16 ;
 	setAttr ".rpt" -type "double3" -7.8167937974458481e-16 -2.5214252867540756e-16 1.0829352876146314e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "25741556-4C1E-4471-96D6-BAAE9C80EFBC";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
-	setAttr ".coi" 4.3140796191602941;
+	setAttr ".coi" 0.51848334455139844;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -89,7 +90,7 @@ createNode mesh -n "pCube4Shape" -p "pCube4";
 	setAttr -k off ".v";
 	setAttr ".vir" yes;
 	setAttr ".vif" yes;
-	setAttr ".pv" -type "double2" -0.059435068429984805 1.4198516069124247 ;
+	setAttr ".pv" -type "double2" 0.51113447851697602 0.48876733871698352 ;
 	setAttr ".uvst[0].uvsn" -type "string" "map1";
 	setAttr ".cuvs" -type "string" "map1";
 	setAttr ".dcc" -type "string" "Ambient+Diffuse";
@@ -555,21 +556,34 @@ createNode mesh -n "polySurfaceShape1" -p "pCube4";
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
+createNode transform -n "aiAreaLight1";
+	rename -uid "08BDD660-4736-E37F-9CEC-25A7F1A7D0BD";
+	setAttr ".t" -type "double3" 0.030015272102947466 1.9351694018279995 -0.0024106781253609988 ;
+	setAttr ".r" -type "double3" -90 0 0 ;
+createNode aiAreaLight -n "aiAreaLightShape1" -p "aiAreaLight1";
+	rename -uid "9C05E002-4A57-CC59-5B2C-1797FCD810D1";
+	addAttr -ci true -h true -sn "aal" -ln "attributeAliasList" -dt "attributeAlias";
+	setAttr -k off ".v";
+	setAttr ".csh" no;
+	setAttr ".rcsh" no;
+	setAttr ".ai_exposure" 5;
+	setAttr ".ai_translator" -type "string" "quad";
+	setAttr ".aal" -type "attributeAlias" 4 "exposure" "aiExposure" "normalize" "aiNormalize" ;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "7C80537C-4911-63DC-0E58-1F86642825E6";
+	rename -uid "57918968-4EB4-264B-3A3E-FE9271B62627";
 	setAttr -s 3 ".lnk";
 	setAttr -s 3 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "1D08D6C2-4CA3-72B6-828F-67A134CA9753";
+	rename -uid "7D88464C-402D-409A-6552-DFABC0CC09FD";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "26E2A1DF-462F-73ED-3ECF-D1B1464A6E30";
+	rename -uid "FE7DCB12-46E6-A340-EC0B-82A499837B1F";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "5067D5D4-4419-4F7D-785B-5E9CFCB4BDE9";
+	rename -uid "7FDD94EB-45B5-B6AB-72DF-7CB6D94EF161";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "5FF8259F-4569-2D9D-2823-8F95598AC2BE";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "C3D874D8-4278-329D-B262-F0A4482D6178";
+	rename -uid "525DB249-4E12-209C-4A4D-6CA76A3FA859";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "8608FC02-4ADA-7A43-9430-059F386C4782";
 	setAttr ".g" yes;
@@ -1167,75 +1181,74 @@ createNode polyTweakUV -n "polyTweakUV4";
 	rename -uid "E623CC6B-4B19-0475-143F-5F9CED424DBF";
 	setAttr ".uopa" yes;
 	setAttr -s 260 ".uvtk";
-	setAttr ".uvtk[0:249]" -type "float2" 0.53516096 0.17978063 0.53516096 0.17978063
-		 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096 0.17978063
-		 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096 0.17978069
-		 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096 0.17978063
-		 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096 0.17978063
-		 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096 0.17978069 0.53516096 0.17978069
-		 0.53516096 0.17978063 0.53516096 0.17978063 -0.69764435 0.76074785 -0.69764435 0.76074779
-		 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074785 -0.69764435
-		 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435
-		 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074785 -0.69764435
-		 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074791 -0.69764435 0.76074785 -0.69764435
-		 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435
-		 0.76074779 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435
-		 0.76074779 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435
-		 0.76074785 -0.69764435 0.76074779 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435
-		 0.76074785 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074791 -0.69764435
-		 0.76074785 -0.69764435 0.76074779 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435
-		 0.76074779 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074779 -0.69764435
-		 0.76074779 -0.69764435 0.76074785 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435
-		 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435
-		 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435
-		 0.76074785 -0.69764435 0.76074779 -0.69764435 0.76074785 -0.69764435 0.76074779 -0.69764435
-		 0.76074791 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074791 -0.69764435
-		 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074791 -0.69764435
-		 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074791 -0.69764435
-		 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074791 -0.69764435 0.76074791 -0.69764435
-		 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435
-		 0.76074791 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074791 -0.69764435
-		 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435
-		 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435
-		 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435
-		 0.76074791 -0.69764435 0.76074791 -0.69764435 0.76074779 -0.69764435 0.76074791 -0.69764435
-		 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074791 -0.69764435
-		 0.76074779 -0.69764435 0.76074791 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435
-		 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435
-		 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435
-		 0.76074779 -0.69764435 0.76074791 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435
-		 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074779 -0.69764435 0.76074785 -0.69764435
-		 0.76074779 -0.69764435 0.76074785 -1.21551478 0.65185374 -1.22372639 0.65041262 -1.22586024
-		 0.64557892 -1.22689497 0.63888651 -1.22691596 0.62996155 -1.22591269 0.62326652 -1.22286093
-		 0.61804599 -1.2157222 0.61690146 -1.20756829 0.61688882 -1.20042861 0.61799401 -1.19736326
-		 0.62319869 -1.19634044 0.62989134 -1.19633567 0.63881606 -1.1973511 0.64551097 -1.20023239
-		 0.65071756 -1.2073611 0.65184253 -0.69764435 0.76074779 -0.19587174 1.065017462 -0.20401767
-		 1.063531518 -0.20606056 1.058708191 -0.20708647 1.052014947 -0.20709553 1.043089747
-		 -0.20608333 1.03639555 -0.20404974 1.031564832 -0.19588843 1.030072808 -0.18773428
-		 1.030061841 -0.17958382 1.03154552 -0.17754188 1.036382914 -0.17651811 1.043076277
-		 -0.17651191 1.052001238 -0.17752627 1.058695436 -0.17956129 1.063540816 -0.18771771
-		 1.06502974 0.53516096 0.17978063 0.53516096 0.17978063 -0.69764435 0.76074785 -0.69764435
-		 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074785 -1.23172867 0.64563757 -1.23175299
-		 0.63894397 -1.23178518 0.63001889 -1.23171222 0.65010029 -1.2318095 0.62332517 -1.23182571
-		 0.61886293 -1.19146645 0.62319833 -1.19146645 0.62989205 -1.19146645 0.63881725 -1.19146645
-		 0.61873597 -1.19146645 0.64551097 -1.19146645 0.64997345 -0.21194568 1.058716655
-		 -0.21195593 1.052022815 -0.21196964 1.043097854 -0.21193865 1.063179135 -0.21198002
-		 1.036404252 -0.21198669 1.031941533 -0.17165306 1.036378026 -0.17164686 1.043071985
-		 -0.17163876 1.051996827 -0.17165735 1.031915545 -0.17163256 1.058690667 -0.17162827
-		 1.063153148 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096
-		 0.17978063 0.53516096 0.17978069 0.53516096 0.17978069 0.53516096 0.17978063 0.53516096
-		 0.17978063 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096
-		 0.17978063 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096 0.17978063 0.53516096
-		 0.17978063 0.53516096 0.17978063 0.53516096 0.17978063 -0.69764435 0.76074779 -0.69764435
-		 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435
-		 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435 0.76074785 -0.69764435
-		 0.76074779 -0.69764435 0.76074785 -0.69764435 0.76074785 -1.21533668 0.65737373 -1.22145212
-		 0.65738338 -1.207183 0.65736037 -1.20106781 0.6573506 -1.22184885 0.61139983 -1.21573389
-		 0.61138731;
-	setAttr ".uvtk[250:259]" -1.20757973 0.61137122 -1.20146477 0.61135906 -0.19589201
-		 1.070528507 -0.20200697 1.070507407 -0.18773797 1.070556521 -0.18162301 1.070577502
-		 -0.20201591 1.024570465 -0.19590083 1.024557352 -0.18774703 1.02453959 -0.18163207
-		 1.024526596;
+	setAttr ".uvtk[0:249]" -type "float2" 0.57305074 0.093417197 0.55633432 0.093417183
+		 0.55633432 -0.1008466 0.57305074 -0.1008466 0.54923236 -0.12070021 0.58015281 -0.12070021
+		 0.55633432 -0.1410239 0.57305074 -0.14102402 0.55633432 -0.28472349 0.57305074 -0.28472343
+		 0.54405349 -0.3013871 0.58533162 -0.3013871 0.61472881 0.093417197 0.59801233 0.093417197
+		 0.59801233 -0.10084648 0.61472881 -0.1008466 0.59091038 -0.12070021 0.6218307 -0.12070021
+		 0.59801233 -0.14102402 0.61472881 -0.1410239 0.59801233 -0.28472343 0.61472881 -0.28472343
+		 0.58573145 -0.3013871 0.62700963 -0.3013871 -0.65459269 0.20232613 -0.64424664 0.20147242
+		 -0.64484268 0.20315881 -0.64222026 0.20086861 -0.64306051 0.20035785 -0.68789941
+		 0.20105368 -0.64348018 0.19982344 -0.64306796 0.2023669 -0.64349329 0.2035199 -0.64485073
+		 0.20541008 -0.65460634 0.20617379 -0.68792111 0.2072102 -0.82116383 0.20673795 -0.82114208
+		 0.20058125 -0.64222288 0.20160027 -0.82112241 0.1950305 -0.6434654 0.1956604 -0.63674116
+		 0.19984734 -0.63800842 0.20088351 -0.6389305 0.19980294 -0.64129269 0.19978797 -0.63672638
+		 0.19568424 -0.64349878 0.20505907 -0.64426666 0.2071007 -0.64309025 0.20822974 -0.64224446
+		 0.20768513 -0.64351135 0.20861991 -0.82118154 0.21174689 -0.64352471 0.21237667 -0.64095795
+		 0.2012201 -0.59185874 0.20139404 -0.62552834 0.20242919 -0.63598639 0.20150198 -0.63716251
+		 0.20037216 -0.63927323 0.201226 -0.45719683 0.20187135 -0.45717716 0.19632082 -0.64308167
+		 0.20621486 -0.64224195 0.20698734 -0.64132273 0.20880075 -0.6389612 0.20881201 -0.63803262
+		 0.20770003 -0.63677227 0.20864381 -0.63678563 0.21240051 -0.45721865 0.20802809 -0.59188062
+		 0.2075506 -0.62554199 0.20627697 -0.63541037 0.20544364 -0.63540232 0.20319237 -0.63717139
+		 0.20238788 -0.63801104 0.20161517 -0.64097977 0.20737661 -0.63929498 0.20738257 -0.63719159
+		 0.2082478 -0.63600641 0.20713003 -0.45723659 0.21303703 -0.6367597 0.20508297 -0.63675421
+		 0.20354374 -0.63803017 0.20700218 -0.63718498 0.20623572 -0.62539232 0.16405758 -0.63585669
+		 0.16491064 -0.6352607 0.16322425 -0.63788307 0.1655145 -0.63704062 0.1660324 -0.59173095
+		 0.16533127 -0.6366232 0.16655973 -0.63703537 0.16401616 -0.63661003 0.16286346 -0.45706904
+		 0.16580859 -0.63525265 0.16097292 -0.62537873 0.16020969 -0.59170914 0.15917465 -0.45704713
+		 0.15965196 -0.63788044 0.16478267 -0.63663793 0.17072281 -0.45708871 0.17135939 -0.64337701
+		 0.17069897 -0.64336216 0.16653588 -0.64209497 0.16549948 -0.6411733 0.1665816 -0.6388129
+		 0.16658816 -0.63660461 0.16132429 -0.63583672 0.15928248 -0.63701057 0.15814552 -0.63785887
+		 0.15869811 -0.63659191 0.15776329 -0.63657862 0.15400653 -0.45702946 0.1546431 -0.63914537
+		 0.16516313 -0.82103395 0.17006907 -0.82101417 0.16451839 -0.68777156 0.16499099 -0.65445685
+		 0.16395453 -0.64411688 0.16488132 -0.64294046 0.16600975 -0.64083016 0.16515723 -0.6370216
+		 0.16016862 -0.63786131 0.15939578 -0.6387831 0.15759049 -0.64114201 0.1575716 -0.64207077
+		 0.15868309 -0.64333099 0.15773927 -0.64331764 0.15398245 -0.64470106 0.16319093 -0.82099247
+		 0.1583617 -0.68774974 0.15883419 -0.65444309 0.16010675 -0.64469302 0.16093954 -0.642932
+		 0.16399536 -0.64209241 0.16476789 -0.63912356 0.15900657 -0.64080828 0.15900061 -0.64291191
+		 0.15813491 -0.64409697 0.15925315 -0.82097471 0.1533526 -0.64334369 0.16130027 -0.64334905
+		 0.16283956 -0.64207321 0.159381 -0.64291841 0.16014746 -0.63756049 0.20918097 -0.63755119
+		 0.19946301 -0.6425423 0.15720175 -0.64255399 0.16691855 -0.64272285 0.20916612 -0.63739228
+		 0.15720783 -0.64267677 0.19945258 -0.95019245 0.068220414 -0.9535991 0.06762258 -0.95448434
+		 0.065617539 -0.9549135 0.062841095 -0.95492232 0.059138633 -0.95450616 0.056361236
+		 -0.9532401 0.054195501 -0.95027864 0.053720631 -0.94689602 0.053715385 -0.94393408
+		 0.054173984 -0.94266248 0.056333102 -0.94223809 0.059109546 -0.94223619 0.062811889
+		 -0.94265735 0.065589048 -0.94385266 0.067749061 -0.94681001 0.068215765 -0.63743639
+		 0.16693869 -0.33430856 0.48028383 -0.33768791 0.47966745 -0.33853531 0.47766671 -0.33896095
+		 0.4748899 -0.3389647 0.47118708 -0.33854485 0.46841016 -0.3377012 0.46640614 -0.33431554
+		 0.4657872 -0.33093274 0.46578279 -0.3275516 0.46639827 -0.3267045 0.4684051 -0.32627976
+		 0.47118154 -0.32627714 0.47488424 -0.32669801 0.4776611 -0.32754219 0.47967139 -0.33092582
+		 0.48028919 0.59801233 0.1101337 0.57305074 0.11013366 -0.64361316 0.23733805 -0.82127029
+		 0.23670839 -0.63687408 0.23736189 -0.45732468 0.23799843 -0.95691884 0.065641619
+		 -0.95692891 0.062864937 -0.9569422 0.059162237 -0.95691198 0.067492999 -0.95695245
+		 0.056385435 -0.95695907 0.054534353 -0.94021618 0.056332685 -0.94021618 0.059109725
+		 -0.94021618 0.062812246 -0.94021618 0.054481603 -0.94021618 0.065589048 -0.94021618
+		 0.067440428 -0.34097683 0.47767016 -0.34098101 0.47489318 -0.34098673 0.4711906 -0.34097385
+		 0.4795213 -0.34099102 0.46841392 -0.34099382 0.46656242 -0.32426143 0.46840301 -0.32425892
+		 0.47117987 -0.32425559 0.47488227 -0.32426333 0.46655163 -0.32425308 0.47765914 -0.32425123
+		 0.47951064 0.57305074 -0.12070021 0.59801233 -0.12070021 0.57305074 -0.14102402 0.59801233
+		 -0.14102402 0.57305074 -0.28472343 0.59801233 -0.28472343 0.57305074 -0.30138698
+		 0.59801233 -0.30138698 0.63969028 -0.1008466 0.63969028 0.093417183 0.61472881 -0.12070021
+		 0.63969028 -0.12070027 0.61472881 -0.1410239 0.63969028 -0.14102396 0.61472869 -0.28472349
+		 0.63969028 -0.28472349 0.61472869 -0.3013871 0.63969028 -0.3013871 -0.44052044 0.21309556
+		 -0.44060814 0.23805714 -0.44615889 0.23803771 -0.44607118 0.21307631 -0.45231551
+		 0.23801595 -0.4522278 0.21305467 -0.83234704 0.21170725 -0.83243597 0.23666857 -0.83798671
+		 0.23664884 -0.83789778 0.21168734 -0.82619035 0.21172918 -0.82627928 0.23669051 -0.95011866
+		 0.070510425 -0.95265561 0.070514418 -0.9467361 0.070504881 -0.94419926 0.070500769
+		 -0.95282018 0.051438242 -0.95028341 0.051433057;
+	setAttr ".uvtk[250:259]" -0.94690067 0.051426381 -0.94436389 0.051421314 -0.33431709
+		 0.48257026 -0.33685374 0.48256156 -0.33093429 0.4825817 -0.32839757 0.48259041 -0.33685744
+		 0.46350464 -0.33432066 0.4634991 -0.33093804 0.46349177 -0.32840127 0.4634864;
 createNode openPBRSurface -n "Railway_Texture";
 	rename -uid "43B3FF59-4B01-0301-0DD4-FDBE1D9EFD98";
 createNode shadingEngine -n "openPBRSurface1SG";
@@ -1244,18 +1257,103 @@ createNode shadingEngine -n "openPBRSurface1SG";
 	setAttr ".ro" yes;
 createNode materialInfo -n "materialInfo1";
 	rename -uid "81FBBA5A-4D40-1FEB-6713-A0A7BAA71EC9";
+createNode file -n "e_1";
+	rename -uid "3913107D-412A-C213-A1D9-EFBC0FD248CA";
+	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_Metallic.png";
+	setAttr ".cs" -type "string" "Raw";
+createNode place2dTexture -n "place2dTexture1";
+	rename -uid "80187924-40B9-71A3-BF8A-76AF46660670";
+createNode file -n "e_2";
+	rename -uid "6A448ECE-4C54-68E2-5550-DAB7B9B30FAC";
+	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_Normal.png";
+	setAttr ".cs" -type "string" "Raw";
+createNode place2dTexture -n "place2dTexture2";
+	rename -uid "D6F77C81-4AB4-3FCE-F5FD-7FACCD86171E";
+createNode file -n "e_3";
+	rename -uid "7295C0CF-429F-C8E4-B3A9-E9BAE23C7588";
+	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_Roughness.png";
+	setAttr ".cs" -type "string" "Raw";
+createNode place2dTexture -n "place2dTexture3";
+	rename -uid "ECC16E46-4CA5-95EF-311E-8AAB21C20A59";
+createNode file -n "e_4";
+	rename -uid "37EB6D44-425D-FC74-A790-8A995FCE5C58";
+	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_BaseColor.png";
+	setAttr ".cs" -type "string" "sRGB Encoded Rec.709 (sRGB)";
+createNode place2dTexture -n "place2dTexture4";
+	rename -uid "0D87E7C6-4D10-A1EE-1B16-0C8C4CF04DFE";
+createNode file -n "e_5";
+	rename -uid "F5BA43EE-41A3-96E8-2262-B8BABF68A804";
+	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_Height.png";
+	setAttr ".cs" -type "string" "sRGB Encoded Rec.709 (sRGB)";
+createNode place2dTexture -n "place2dTexture5";
+	rename -uid "CE379A10-46F7-E7C7-FA54-65A74E91C328";
+createNode aiNormalMap -n "aiNormalMap1";
+	rename -uid "4EADAA40-44CF-C139-172B-EBACF5830084";
+createNode aiOptions -s -n "defaultArnoldRenderOptions";
+	rename -uid "CB0DA91F-4CD9-1832-167A-E694BCEADC2C";
+	addAttr -ci true -sn "ARV_options" -ln "ARV_options" -dt "string";
+	setAttr ".version" -type "string" "5.6.1.1";
+	setAttr ".ARV_options" -type "string" "Test Resolution=100%;Camera=perspShape;Color Management.Gamma=1;Color Management.Exposure=0;Background.BG=BG Color;Background.Color=0 0 0;Background.Image=;Background.Scale=1 1;Background.Offset=0 0;Background.Apply Color Management=1;Foreground.Enable FG=0;Foreground.Image=;Foreground.Scale=1 1;Foreground.Offset=0 0;Foreground.Apply Color Management=1;Interactive.FPS=16";
+createNode aiAOVFilter -s -n "defaultArnoldFilter";
+	rename -uid "D62B2E4B-47DB-9FD7-A279-C5BA6D9CB34E";
+	setAttr ".ai_translator" -type "string" "gaussian";
+createNode aiAOVDriver -s -n "defaultArnoldDriver";
+	rename -uid "7D3BC091-486F-0362-BE0A-BA8CEB9B69A6";
+	setAttr ".ai_translator" -type "string" "exr";
+createNode aiAOVDriver -s -n "defaultArnoldDisplayDriver";
+	rename -uid "AFFD02AC-4EC9-0433-2279-48986AEA1430";
+	setAttr ".ai_translator" -type "string" "maya";
+	setAttr ".output_mode" 0;
+createNode aiImagerDenoiserOidn -s -n "defaultArnoldDenoiser";
+	rename -uid "86A8E266-43FB-5DB6-5AD6-CEA861209A7F";
 createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
-	rename -uid "ACE92CEB-4764-5775-3486-E4A9D79DE350";
+	rename -uid "07C826F5-46F3-0904-13E1-DD8C7F89F7CE";
 	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
-	setAttr ".tgi[0].vl" -type "double2" -1300.6442307985344 -1328.4206319935661 ;
-	setAttr ".tgi[0].vh" -type "double2" 891.38670377627886 611.07217647815844 ;
-	setAttr -s 2 ".tgi[0].ni";
-	setAttr ".tgi[0].ni[0].x" 94.285713195800781;
-	setAttr ".tgi[0].ni[0].y" 20;
-	setAttr ".tgi[0].ni[0].nvs" 1971;
-	setAttr ".tgi[0].ni[1].x" 405.71429443359375;
-	setAttr ".tgi[0].ni[1].y" 20;
+	setAttr ".tgi[0].vl" -type "double2" -1032.4802918819644 -1750.5540354264099 ;
+	setAttr ".tgi[0].vh" -type "double2" 282.73832112501378 -586.85830410226345 ;
+	setAttr -s 14 ".tgi[0].ni";
+	setAttr ".tgi[0].ni[0].x" -1123.064697265625;
+	setAttr ".tgi[0].ni[0].y" -1107.5775146484375;
+	setAttr ".tgi[0].ni[0].nvs" 1923;
+	setAttr ".tgi[0].ni[1].x" -624.4932861328125;
+	setAttr ".tgi[0].ni[1].y" -1084.7203369140625;
 	setAttr ".tgi[0].ni[1].nvs" 1923;
+	setAttr ".tgi[0].ni[2].x" -1123.064697265625;
+	setAttr ".tgi[0].ni[2].y" -1283.291748046875;
+	setAttr ".tgi[0].ni[2].nvs" 1923;
+	setAttr ".tgi[0].ni[3].x" -1430.2076416015625;
+	setAttr ".tgi[0].ni[3].y" -1457.5775146484375;
+	setAttr ".tgi[0].ni[3].nvs" 1923;
+	setAttr ".tgi[0].ni[4].x" -500.00851440429688;
+	setAttr ".tgi[0].ni[4].y" -513.32177734375;
+	setAttr ".tgi[0].ni[4].nvs" 1923;
+	setAttr ".tgi[0].ni[5].x" -721.43707275390625;
+	setAttr ".tgi[0].ni[5].y" -513.32177734375;
+	setAttr ".tgi[0].ni[5].nvs" 1923;
+	setAttr ".tgi[0].ni[6].x" -624.4932861328125;
+	setAttr ".tgi[0].ni[6].y" -1260.4346923828125;
+	setAttr ".tgi[0].ni[6].nvs" 1923;
+	setAttr ".tgi[0].ni[7].x" -1123.064697265625;
+	setAttr ".tgi[0].ni[7].y" -1657.5775146484375;
+	setAttr ".tgi[0].ni[7].nvs" 1923;
+	setAttr ".tgi[0].ni[8].x" -1123.064697265625;
+	setAttr ".tgi[0].ni[8].y" -1434.7203369140625;
+	setAttr ".tgi[0].ni[8].nvs" 1923;
+	setAttr ".tgi[0].ni[9].x" -128.77902221679688;
+	setAttr ".tgi[0].ni[9].y" -1150.4346923828125;
+	setAttr ".tgi[0].ni[9].nvs" 1971;
+	setAttr ".tgi[0].ni[10].x" -624.4932861328125;
+	setAttr ".tgi[0].ni[10].y" -1634.7203369140625;
+	setAttr ".tgi[0].ni[10].nvs" 1923;
+	setAttr ".tgi[0].ni[11].x" 182.64955139160156;
+	setAttr ".tgi[0].ni[11].y" -1150.4346923828125;
+	setAttr ".tgi[0].ni[11].nvs" 1923;
+	setAttr ".tgi[0].ni[12].x" 535.50787353515625;
+	setAttr ".tgi[0].ni[12].y" -426.0321044921875;
+	setAttr ".tgi[0].ni[12].nvs" 1923;
+	setAttr ".tgi[0].ni[13].x" -624.4932861328125;
+	setAttr ".tgi[0].ni[13].y" -1436.14892578125;
+	setAttr ".tgi[0].ni[13].nvs" 1923;
 select -ne :time1;
 	setAttr ".o" 69;
 	setAttr ".unw" 69;
@@ -1273,7 +1371,12 @@ select -ne :defaultShaderList1;
 	setAttr -s 7 ".s";
 select -ne :postProcessList1;
 	setAttr -s 2 ".p";
+select -ne :defaultRenderUtilityList1;
+	setAttr -s 6 ".u";
 select -ne :defaultRenderingList1;
+select -ne :lightList1;
+select -ne :defaultTextureList1;
+	setAttr -s 5 ".tx";
 select -ne :standardSurface1;
 	setAttr ".bc" -type "float3" 0.40000001 0.40000001 0.40000001 ;
 	setAttr ".sr" 0.5;
@@ -1290,6 +1393,7 @@ select -ne :defaultRenderGlobals;
 	setAttr ".dss" -type "string" "openPBR_shader1";
 select -ne :defaultResolution;
 	setAttr ".pa" 1;
+select -ne :defaultLightSet;
 select -ne :defaultColorMgtGlobals;
 	setAttr ".cfe" yes;
 	setAttr ".cfp" -type "string" "<MAYA_RESOURCES>/OCIO-configs/Maya2022-default/config.ocio";
@@ -1344,16 +1448,175 @@ connectAttr "polyMapSewMove22.out" "polyMapSewMove23.ip";
 connectAttr "polyMapSewMove23.out" "polyMapSewMove24.ip";
 connectAttr "polyMapSewMove24.out" "polyMapSewMove25.ip";
 connectAttr "polyMapSewMove25.out" "polyTweakUV4.ip";
+connectAttr "e_4.oc" "Railway_Texture.bc";
+connectAttr "e_1.oa" "Railway_Texture.m";
+connectAttr "aiNormalMap1.out" "Railway_Texture.n";
+connectAttr "e_3.oa" "Railway_Texture.sr";
 connectAttr "Railway_Texture.oc" "openPBRSurface1SG.ss";
 connectAttr "pCube4Shape.iog" "openPBRSurface1SG.dsm" -na;
 connectAttr "openPBRSurface1SG.msg" "materialInfo1.sg";
 connectAttr "Railway_Texture.msg" "materialInfo1.m";
-connectAttr "Railway_Texture.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
+connectAttr "e_4.msg" "materialInfo1.t" -na;
+connectAttr ":defaultColorMgtGlobals.cme" "e_1.cme";
+connectAttr ":defaultColorMgtGlobals.cfe" "e_1.cmcf";
+connectAttr ":defaultColorMgtGlobals.cfp" "e_1.cmcp";
+connectAttr ":defaultColorMgtGlobals.wsn" "e_1.ws";
+connectAttr "place2dTexture1.c" "e_1.c";
+connectAttr "place2dTexture1.tf" "e_1.tf";
+connectAttr "place2dTexture1.rf" "e_1.rf";
+connectAttr "place2dTexture1.mu" "e_1.mu";
+connectAttr "place2dTexture1.mv" "e_1.mv";
+connectAttr "place2dTexture1.s" "e_1.s";
+connectAttr "place2dTexture1.wu" "e_1.wu";
+connectAttr "place2dTexture1.wv" "e_1.wv";
+connectAttr "place2dTexture1.re" "e_1.re";
+connectAttr "place2dTexture1.of" "e_1.of";
+connectAttr "place2dTexture1.r" "e_1.ro";
+connectAttr "place2dTexture1.n" "e_1.n";
+connectAttr "place2dTexture1.vt1" "e_1.vt1";
+connectAttr "place2dTexture1.vt2" "e_1.vt2";
+connectAttr "place2dTexture1.vt3" "e_1.vt3";
+connectAttr "place2dTexture1.vc1" "e_1.vc1";
+connectAttr "place2dTexture1.o" "e_1.uv";
+connectAttr "place2dTexture1.ofs" "e_1.fs";
+connectAttr ":defaultColorMgtGlobals.cme" "e_2.cme";
+connectAttr ":defaultColorMgtGlobals.cfe" "e_2.cmcf";
+connectAttr ":defaultColorMgtGlobals.cfp" "e_2.cmcp";
+connectAttr ":defaultColorMgtGlobals.wsn" "e_2.ws";
+connectAttr "place2dTexture2.c" "e_2.c";
+connectAttr "place2dTexture2.tf" "e_2.tf";
+connectAttr "place2dTexture2.rf" "e_2.rf";
+connectAttr "place2dTexture2.mu" "e_2.mu";
+connectAttr "place2dTexture2.mv" "e_2.mv";
+connectAttr "place2dTexture2.s" "e_2.s";
+connectAttr "place2dTexture2.wu" "e_2.wu";
+connectAttr "place2dTexture2.wv" "e_2.wv";
+connectAttr "place2dTexture2.re" "e_2.re";
+connectAttr "place2dTexture2.of" "e_2.of";
+connectAttr "place2dTexture2.r" "e_2.ro";
+connectAttr "place2dTexture2.n" "e_2.n";
+connectAttr "place2dTexture2.vt1" "e_2.vt1";
+connectAttr "place2dTexture2.vt2" "e_2.vt2";
+connectAttr "place2dTexture2.vt3" "e_2.vt3";
+connectAttr "place2dTexture2.vc1" "e_2.vc1";
+connectAttr "place2dTexture2.o" "e_2.uv";
+connectAttr "place2dTexture2.ofs" "e_2.fs";
+connectAttr ":defaultColorMgtGlobals.cme" "e_3.cme";
+connectAttr ":defaultColorMgtGlobals.cfe" "e_3.cmcf";
+connectAttr ":defaultColorMgtGlobals.cfp" "e_3.cmcp";
+connectAttr ":defaultColorMgtGlobals.wsn" "e_3.ws";
+connectAttr "place2dTexture3.c" "e_3.c";
+connectAttr "place2dTexture3.tf" "e_3.tf";
+connectAttr "place2dTexture3.rf" "e_3.rf";
+connectAttr "place2dTexture3.mu" "e_3.mu";
+connectAttr "place2dTexture3.mv" "e_3.mv";
+connectAttr "place2dTexture3.s" "e_3.s";
+connectAttr "place2dTexture3.wu" "e_3.wu";
+connectAttr "place2dTexture3.wv" "e_3.wv";
+connectAttr "place2dTexture3.re" "e_3.re";
+connectAttr "place2dTexture3.of" "e_3.of";
+connectAttr "place2dTexture3.r" "e_3.ro";
+connectAttr "place2dTexture3.n" "e_3.n";
+connectAttr "place2dTexture3.vt1" "e_3.vt1";
+connectAttr "place2dTexture3.vt2" "e_3.vt2";
+connectAttr "place2dTexture3.vt3" "e_3.vt3";
+connectAttr "place2dTexture3.vc1" "e_3.vc1";
+connectAttr "place2dTexture3.o" "e_3.uv";
+connectAttr "place2dTexture3.ofs" "e_3.fs";
+connectAttr ":defaultColorMgtGlobals.cme" "e_4.cme";
+connectAttr ":defaultColorMgtGlobals.cfe" "e_4.cmcf";
+connectAttr ":defaultColorMgtGlobals.cfp" "e_4.cmcp";
+connectAttr ":defaultColorMgtGlobals.wsn" "e_4.ws";
+connectAttr "place2dTexture4.c" "e_4.c";
+connectAttr "place2dTexture4.tf" "e_4.tf";
+connectAttr "place2dTexture4.rf" "e_4.rf";
+connectAttr "place2dTexture4.mu" "e_4.mu";
+connectAttr "place2dTexture4.mv" "e_4.mv";
+connectAttr "place2dTexture4.s" "e_4.s";
+connectAttr "place2dTexture4.wu" "e_4.wu";
+connectAttr "place2dTexture4.wv" "e_4.wv";
+connectAttr "place2dTexture4.re" "e_4.re";
+connectAttr "place2dTexture4.of" "e_4.of";
+connectAttr "place2dTexture4.r" "e_4.ro";
+connectAttr "place2dTexture4.n" "e_4.n";
+connectAttr "place2dTexture4.vt1" "e_4.vt1";
+connectAttr "place2dTexture4.vt2" "e_4.vt2";
+connectAttr "place2dTexture4.vt3" "e_4.vt3";
+connectAttr "place2dTexture4.vc1" "e_4.vc1";
+connectAttr "place2dTexture4.o" "e_4.uv";
+connectAttr "place2dTexture4.ofs" "e_4.fs";
+connectAttr ":defaultColorMgtGlobals.cme" "e_5.cme";
+connectAttr ":defaultColorMgtGlobals.cfe" "e_5.cmcf";
+connectAttr ":defaultColorMgtGlobals.cfp" "e_5.cmcp";
+connectAttr ":defaultColorMgtGlobals.wsn" "e_5.ws";
+connectAttr "place2dTexture5.c" "e_5.c";
+connectAttr "place2dTexture5.tf" "e_5.tf";
+connectAttr "place2dTexture5.rf" "e_5.rf";
+connectAttr "place2dTexture5.mu" "e_5.mu";
+connectAttr "place2dTexture5.mv" "e_5.mv";
+connectAttr "place2dTexture5.s" "e_5.s";
+connectAttr "place2dTexture5.wu" "e_5.wu";
+connectAttr "place2dTexture5.wv" "e_5.wv";
+connectAttr "place2dTexture5.re" "e_5.re";
+connectAttr "place2dTexture5.of" "e_5.of";
+connectAttr "place2dTexture5.r" "e_5.ro";
+connectAttr "place2dTexture5.n" "e_5.n";
+connectAttr "place2dTexture5.vt1" "e_5.vt1";
+connectAttr "place2dTexture5.vt2" "e_5.vt2";
+connectAttr "place2dTexture5.vt3" "e_5.vt3";
+connectAttr "place2dTexture5.vc1" "e_5.vc1";
+connectAttr "place2dTexture5.o" "e_5.uv";
+connectAttr "place2dTexture5.ofs" "e_5.fs";
+connectAttr "e_2.oc" "aiNormalMap1.input";
+connectAttr ":defaultArnoldDenoiser.msg" ":defaultArnoldRenderOptions.imagers" -na
 		;
-connectAttr "openPBRSurface1SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[1].dn"
+connectAttr ":defaultArnoldDisplayDriver.msg" ":defaultArnoldRenderOptions.drivers"
+		 -na;
+connectAttr ":defaultArnoldFilter.msg" ":defaultArnoldRenderOptions.filt";
+connectAttr ":defaultArnoldDriver.msg" ":defaultArnoldRenderOptions.drvr";
+connectAttr "place2dTexture4.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
+		;
+connectAttr "e_4.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[1].dn"
+		;
+connectAttr "place2dTexture1.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[2].dn"
+		;
+connectAttr "place2dTexture2.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[3].dn"
+		;
+connectAttr "e_5.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[4].dn"
+		;
+connectAttr "place2dTexture5.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[5].dn"
+		;
+connectAttr "e_1.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[6].dn"
+		;
+connectAttr "place2dTexture3.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[7].dn"
+		;
+connectAttr "e_2.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[8].dn"
+		;
+connectAttr "Railway_Texture.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[9].dn"
+		;
+connectAttr "e_3.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[10].dn"
+		;
+connectAttr "openPBRSurface1SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[11].dn"
+		;
+connectAttr "aiAreaLightShape1.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[12].dn"
+		;
+connectAttr "aiNormalMap1.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[13].dn"
 		;
 connectAttr "openPBRSurface1SG.pa" ":renderPartition.st" -na;
 connectAttr "Railway_Texture.msg" ":defaultShaderList1.s" -na;
+connectAttr "place2dTexture1.msg" ":defaultRenderUtilityList1.u" -na;
+connectAttr "place2dTexture2.msg" ":defaultRenderUtilityList1.u" -na;
+connectAttr "place2dTexture3.msg" ":defaultRenderUtilityList1.u" -na;
+connectAttr "place2dTexture4.msg" ":defaultRenderUtilityList1.u" -na;
+connectAttr "place2dTexture5.msg" ":defaultRenderUtilityList1.u" -na;
+connectAttr "aiNormalMap1.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
+connectAttr "aiAreaLightShape1.ltd" ":lightList1.l" -na;
+connectAttr "e_1.msg" ":defaultTextureList1.tx" -na;
+connectAttr "e_2.msg" ":defaultTextureList1.tx" -na;
+connectAttr "e_3.msg" ":defaultTextureList1.tx" -na;
+connectAttr "e_4.msg" ":defaultTextureList1.tx" -na;
+connectAttr "e_5.msg" ":defaultTextureList1.tx" -na;
 connectAttr "groupId1.msg" ":initialShadingGroup.gn" -na;
+connectAttr "aiAreaLight1.iog" ":defaultLightSet.dsm" -na;
 // End of OrnateRailway.ma
