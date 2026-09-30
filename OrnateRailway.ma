@@ -1,31 +1,32 @@
 //Maya ASCII 2027 scene
 //Name: OrnateRailway.ma
-//Last modified: Mon, Sep 28, 2026 10:39:52 AM
+//Last modified: Wed, Sep 30, 2026 11:13:14 AM
 //Codeset: 1252
 requires maya "2027";
 requires "stereoCamera" "10.0";
-requires -nodeType "aiOptions" -nodeType "aiAOVDriver" -nodeType "aiAOVFilter" -nodeType "aiAreaLight"
+requires -nodeType "aiOptions" -nodeType "aiAOVDriver" -nodeType "aiAOVFilter" -nodeType "aiSkyDomeLight"
 		 -nodeType "aiNormalMap" -nodeType "aiImagerDenoiserOidn" "mtoa" "5.6.1.1";
+requires "stereoCamera" "10.0";
 currentUnit -l centimeter -a degree -t film;
 fileInfo "application" "maya";
 fileInfo "product" "Maya 2027";
 fileInfo "version" "2027";
 fileInfo "cutIdentifier" "202604221258-70da84b25e";
 fileInfo "osv" "Windows 11 Enterprise v2009 (Build: 26200)";
-fileInfo "UUID" "88A488CC-471A-6A38-AECA-5195104748EF";
+fileInfo "UUID" "67407F27-4720-A5AA-D073-1EA2CF10BD7C";
 fileInfo "license" "education";
 createNode transform -s -n "persp";
 	rename -uid "4B713E21-4C4F-D914-B8CE-75BFD2304DEC";
 	setAttr ".v" no;
-	setAttr ".t" -type "double3" 0.61366075069331838 1.218810631497842 -0.47476007866562919 ;
-	setAttr ".r" -type "double3" 174.95851014601629 -2463.9295296384635 -180.00000000028686 ;
+	setAttr ".t" -type "double3" 1.3293737490141699 1.2004578153912784 -0.84456854106838819 ;
+	setAttr ".r" -type "double3" 170.15851014586289 -2453.529529638397 -180.00000000040774 ;
 	setAttr ".rp" -type "double3" -6.9388939039072284e-18 -2.2204460492503131e-16 -8.8817841970012523e-16 ;
 	setAttr ".rpt" -type "double3" -7.8167937974458481e-16 -2.5214252867540756e-16 1.0829352876146314e-15 ;
 createNode camera -s -n "perspShape" -p "persp";
 	rename -uid "25741556-4C1E-4471-96D6-BAAE9C80EFBC";
 	setAttr -k off ".v" no;
 	setAttr ".fl" 34.999999999999979;
-	setAttr ".coi" 0.51848334455139844;
+	setAttr ".coi" 1.0990888014637001;
 	setAttr ".imn" -type "string" "persp";
 	setAttr ".den" -type "string" "persp_depth";
 	setAttr ".man" -type "string" "persp_mask";
@@ -556,34 +557,26 @@ createNode mesh -n "polySurfaceShape1" -p "pCube4";
 	setAttr ".cvd" -type "dataPolyComponent" Index_Data Vertex 0 ;
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
-createNode transform -n "aiAreaLight1";
-	rename -uid "08BDD660-4736-E37F-9CEC-25A7F1A7D0BD";
-	setAttr ".t" -type "double3" 0.030015272102947466 1.9351694018279995 -0.0024106781253609988 ;
-	setAttr ".r" -type "double3" -90 0 0 ;
-createNode aiAreaLight -n "aiAreaLightShape1" -p "aiAreaLight1";
-	rename -uid "9C05E002-4A57-CC59-5B2C-1797FCD810D1";
-	addAttr -ci true -h true -sn "aal" -ln "attributeAliasList" -dt "attributeAlias";
+createNode transform -n "aiSkyDomeLight1";
+	rename -uid "0E2E59AD-4016-A90A-A309-6F8C55D135DC";
+createNode aiSkyDomeLight -n "aiSkyDomeLightShape1" -p "aiSkyDomeLight1";
+	rename -uid "6A466E14-49CC-56DF-7762-30A5C58A48A3";
 	setAttr -k off ".v";
-	setAttr ".csh" no;
-	setAttr ".rcsh" no;
-	setAttr ".ai_exposure" 5;
-	setAttr ".ai_translator" -type "string" "quad";
-	setAttr ".aal" -type "attributeAlias" 4 "exposure" "aiExposure" "normalize" "aiNormalize" ;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "57918968-4EB4-264B-3A3E-FE9271B62627";
+	rename -uid "3A82ECDB-4B8E-516A-AAC2-3F9B2F1047AF";
 	setAttr -s 3 ".lnk";
 	setAttr -s 3 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "7D88464C-402D-409A-6552-DFABC0CC09FD";
+	rename -uid "F346DC47-4CCD-549B-93AE-20906AE4A144";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "FE7DCB12-46E6-A340-EC0B-82A499837B1F";
+	rename -uid "0BCF774F-4DAE-C6F6-D4F7-099D5703EFA7";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "7FDD94EB-45B5-B6AB-72DF-7CB6D94EF161";
+	rename -uid "EEA46E24-4C31-71E4-340E-958C8432A020";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "5FF8259F-4569-2D9D-2823-8F95598AC2BE";
 	setAttr ".ufem" -type "stringArray" 0  ;
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "525DB249-4E12-209C-4A4D-6CA76A3FA859";
+	rename -uid "84A499AE-41E9-8816-FE44-D39D027F710E";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "8608FC02-4ADA-7A43-9430-059F386C4782";
 	setAttr ".g" yes;
@@ -1249,44 +1242,6 @@ createNode polyTweakUV -n "polyTweakUV4";
 	setAttr ".uvtk[250:259]" -0.94690067 0.051426381 -0.94436389 0.051421314 -0.33431709
 		 0.48257026 -0.33685374 0.48256156 -0.33093429 0.4825817 -0.32839757 0.48259041 -0.33685744
 		 0.46350464 -0.33432066 0.4634991 -0.33093804 0.46349177 -0.32840127 0.4634864;
-createNode openPBRSurface -n "Railway_Texture";
-	rename -uid "43B3FF59-4B01-0301-0DD4-FDBE1D9EFD98";
-createNode shadingEngine -n "openPBRSurface1SG";
-	rename -uid "594D1F55-4DB6-2356-E324-A1A6821CCF56";
-	setAttr ".ihi" 0;
-	setAttr ".ro" yes;
-createNode materialInfo -n "materialInfo1";
-	rename -uid "81FBBA5A-4D40-1FEB-6713-A0A7BAA71EC9";
-createNode file -n "e_1";
-	rename -uid "3913107D-412A-C213-A1D9-EFBC0FD248CA";
-	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_Metallic.png";
-	setAttr ".cs" -type "string" "Raw";
-createNode place2dTexture -n "place2dTexture1";
-	rename -uid "80187924-40B9-71A3-BF8A-76AF46660670";
-createNode file -n "e_2";
-	rename -uid "6A448ECE-4C54-68E2-5550-DAB7B9B30FAC";
-	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_Normal.png";
-	setAttr ".cs" -type "string" "Raw";
-createNode place2dTexture -n "place2dTexture2";
-	rename -uid "D6F77C81-4AB4-3FCE-F5FD-7FACCD86171E";
-createNode file -n "e_3";
-	rename -uid "7295C0CF-429F-C8E4-B3A9-E9BAE23C7588";
-	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_Roughness.png";
-	setAttr ".cs" -type "string" "Raw";
-createNode place2dTexture -n "place2dTexture3";
-	rename -uid "ECC16E46-4CA5-95EF-311E-8AAB21C20A59";
-createNode file -n "e_4";
-	rename -uid "37EB6D44-425D-FC74-A790-8A995FCE5C58";
-	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_BaseColor.png";
-	setAttr ".cs" -type "string" "sRGB Encoded Rec.709 (sRGB)";
-createNode place2dTexture -n "place2dTexture4";
-	rename -uid "0D87E7C6-4D10-A1EE-1B16-0C8C4CF04DFE";
-createNode file -n "e_5";
-	rename -uid "F5BA43EE-41A3-96E8-2262-B8BABF68A804";
-	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_Height.png";
-	setAttr ".cs" -type "string" "sRGB Encoded Rec.709 (sRGB)";
-createNode place2dTexture -n "place2dTexture5";
-	rename -uid "CE379A10-46F7-E7C7-FA54-65A74E91C328";
 createNode aiNormalMap -n "aiNormalMap1";
 	rename -uid "4EADAA40-44CF-C139-172B-EBACF5830084";
 createNode aiOptions -s -n "defaultArnoldRenderOptions";
@@ -1306,54 +1261,85 @@ createNode aiAOVDriver -s -n "defaultArnoldDisplayDriver";
 	setAttr ".output_mode" 0;
 createNode aiImagerDenoiserOidn -s -n "defaultArnoldDenoiser";
 	rename -uid "86A8E266-43FB-5DB6-5AD6-CEA861209A7F";
+createNode openPBRSurface -n "RailwayTexture";
+	rename -uid "FDFDB0EA-4784-9F6C-BEC3-A699E1C9A54C";
+createNode shadingEngine -n "openPBRSurface1SG";
+	rename -uid "0F90F964-4BFD-FE91-5118-7782E745761D";
+	setAttr ".ihi" 0;
+	setAttr ".ro" yes;
+createNode materialInfo -n "materialInfo1";
+	rename -uid "2DDA56E8-407C-6FF6-4BEE-74B98860B187";
+createNode file -n "e_1";
+	rename -uid "E1D9BB2F-4244-A010-E889-F4A2EA091BA3";
+	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_BaseColor.png";
+	setAttr ".cs" -type "string" "sRGB Encoded Rec.709 (sRGB)";
+createNode place2dTexture -n "place2dTexture1";
+	rename -uid "3085623D-4361-24A7-3CF5-FEBCBF0C4D09";
+createNode file -n "e_2";
+	rename -uid "888466E3-4C39-B955-863C-53BAB4A77811";
+	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_Height.png";
+	setAttr ".cs" -type "string" "sRGB Encoded Rec.709 (sRGB)";
+createNode place2dTexture -n "place2dTexture2";
+	rename -uid "76ACFABF-40B8-647B-ABED-C8A13F385D1E";
+createNode file -n "e_3";
+	rename -uid "171E7505-4DEC-52F1-07BC-038DA317BC5C";
+	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_Metallic.png";
+	setAttr ".cs" -type "string" "Raw";
+createNode place2dTexture -n "place2dTexture3";
+	rename -uid "289BB6D3-4BA7-30A1-3CB0-DCB570EAEC76";
+createNode file -n "e_4";
+	rename -uid "1D7FDE61-41D0-0CAD-927B-FD9631A613F1";
+	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_Normal.png";
+	setAttr ".cs" -type "string" "Raw";
+createNode place2dTexture -n "place2dTexture4";
+	rename -uid "EA1D116B-4409-0F6B-4CAF-3EBC7B7A2D94";
+createNode file -n "e_5";
+	rename -uid "56FA08D3-4394-2C8D-7E32-D4BC6E57F664";
+	setAttr ".ftn" -type "string" "C:/Users/10906179/Documents/Models/Animation/Textures/e.g.,OrnateRailwayV002_openPBRSurface1SG_Roughness.png";
+	setAttr ".cs" -type "string" "Raw";
+createNode place2dTexture -n "place2dTexture5";
+	rename -uid "4015B410-45AD-E348-437D-EFADF570DF33";
+createNode aiNormalMap -n "aiNormalMap2";
+	rename -uid "D223D590-4A2C-EC00-EF87-67A9D9AA5BFA";
 createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
-	rename -uid "07C826F5-46F3-0904-13E1-DD8C7F89F7CE";
+	rename -uid "366791DD-4DB4-0E95-80A8-1BA4EFDB5F45";
 	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
-	setAttr ".tgi[0].vl" -type "double2" -1032.4802918819644 -1750.5540354264099 ;
-	setAttr ".tgi[0].vh" -type "double2" 282.73832112501378 -586.85830410226345 ;
-	setAttr -s 14 ".tgi[0].ni";
-	setAttr ".tgi[0].ni[0].x" -1123.064697265625;
-	setAttr ".tgi[0].ni[0].y" -1107.5775146484375;
+	setAttr ".tgi[0].vl" -type "double2" -1387.1056792608738 -2380.6799840926133 ;
+	setAttr ".tgi[0].vh" -type "double2" -169.14701206187294 -1303.0391356953403 ;
+	setAttr -s 11 ".tgi[0].ni";
+	setAttr ".tgi[0].ni[0].x" -747.14288330078125;
+	setAttr ".tgi[0].ni[0].y" -1908.5714111328125;
 	setAttr ".tgi[0].ni[0].nvs" 1923;
-	setAttr ".tgi[0].ni[1].x" -624.4932861328125;
-	setAttr ".tgi[0].ni[1].y" -1084.7203369140625;
+	setAttr ".tgi[0].ni[1].x" -747.14288330078125;
+	setAttr ".tgi[0].ni[1].y" -1358.5714111328125;
 	setAttr ".tgi[0].ni[1].nvs" 1923;
-	setAttr ".tgi[0].ni[2].x" -1123.064697265625;
-	setAttr ".tgi[0].ni[2].y" -1283.291748046875;
+	setAttr ".tgi[0].ni[2].x" -1552.857177734375;
+	setAttr ".tgi[0].ni[2].y" -1732.857177734375;
 	setAttr ".tgi[0].ni[2].nvs" 1923;
-	setAttr ".tgi[0].ni[3].x" -1430.2076416015625;
-	setAttr ".tgi[0].ni[3].y" -1457.5775146484375;
+	setAttr ".tgi[0].ni[3].x" -1245.7142333984375;
+	setAttr ".tgi[0].ni[3].y" -1710;
 	setAttr ".tgi[0].ni[3].nvs" 1923;
-	setAttr ".tgi[0].ni[4].x" -500.00851440429688;
-	setAttr ".tgi[0].ni[4].y" -513.32177734375;
+	setAttr ".tgi[0].ni[4].x" -1245.7142333984375;
+	setAttr ".tgi[0].ni[4].y" -1557.142822265625;
 	setAttr ".tgi[0].ni[4].nvs" 1923;
-	setAttr ".tgi[0].ni[5].x" -721.43707275390625;
-	setAttr ".tgi[0].ni[5].y" -513.32177734375;
+	setAttr ".tgi[0].ni[5].x" -747.14288330078125;
+	setAttr ".tgi[0].ni[5].y" -1710;
 	setAttr ".tgi[0].ni[5].nvs" 1923;
-	setAttr ".tgi[0].ni[6].x" -624.4932861328125;
-	setAttr ".tgi[0].ni[6].y" -1260.4346923828125;
+	setAttr ".tgi[0].ni[6].x" 60;
+	setAttr ".tgi[0].ni[6].y" -1424.2857666015625;
 	setAttr ".tgi[0].ni[6].nvs" 1923;
-	setAttr ".tgi[0].ni[7].x" -1123.064697265625;
-	setAttr ".tgi[0].ni[7].y" -1657.5775146484375;
+	setAttr ".tgi[0].ni[7].x" -1245.7142333984375;
+	setAttr ".tgi[0].ni[7].y" -1381.4285888671875;
 	setAttr ".tgi[0].ni[7].nvs" 1923;
-	setAttr ".tgi[0].ni[8].x" -1123.064697265625;
-	setAttr ".tgi[0].ni[8].y" -1434.7203369140625;
-	setAttr ".tgi[0].ni[8].nvs" 1923;
-	setAttr ".tgi[0].ni[9].x" -128.77902221679688;
-	setAttr ".tgi[0].ni[9].y" -1150.4346923828125;
-	setAttr ".tgi[0].ni[9].nvs" 1971;
-	setAttr ".tgi[0].ni[10].x" -624.4932861328125;
-	setAttr ".tgi[0].ni[10].y" -1634.7203369140625;
+	setAttr ".tgi[0].ni[8].x" -251.42857360839844;
+	setAttr ".tgi[0].ni[8].y" -1424.2857666015625;
+	setAttr ".tgi[0].ni[8].nvs" 1971;
+	setAttr ".tgi[0].ni[9].x" -1245.7142333984375;
+	setAttr ".tgi[0].ni[9].y" -1931.4285888671875;
+	setAttr ".tgi[0].ni[9].nvs" 1923;
+	setAttr ".tgi[0].ni[10].x" -747.14288330078125;
+	setAttr ".tgi[0].ni[10].y" -1534.2857666015625;
 	setAttr ".tgi[0].ni[10].nvs" 1923;
-	setAttr ".tgi[0].ni[11].x" 182.64955139160156;
-	setAttr ".tgi[0].ni[11].y" -1150.4346923828125;
-	setAttr ".tgi[0].ni[11].nvs" 1923;
-	setAttr ".tgi[0].ni[12].x" 535.50787353515625;
-	setAttr ".tgi[0].ni[12].y" -426.0321044921875;
-	setAttr ".tgi[0].ni[12].nvs" 1923;
-	setAttr ".tgi[0].ni[13].x" -624.4932861328125;
-	setAttr ".tgi[0].ni[13].y" -1436.14892578125;
-	setAttr ".tgi[0].ni[13].nvs" 1923;
 select -ne :time1;
 	setAttr ".o" 69;
 	setAttr ".unw" 69;
@@ -1372,7 +1358,7 @@ select -ne :defaultShaderList1;
 select -ne :postProcessList1;
 	setAttr -s 2 ".p";
 select -ne :defaultRenderUtilityList1;
-	setAttr -s 6 ".u";
+	setAttr -s 7 ".u";
 select -ne :defaultRenderingList1;
 select -ne :lightList1;
 select -ne :defaultTextureList1;
@@ -1448,15 +1434,21 @@ connectAttr "polyMapSewMove22.out" "polyMapSewMove23.ip";
 connectAttr "polyMapSewMove23.out" "polyMapSewMove24.ip";
 connectAttr "polyMapSewMove24.out" "polyMapSewMove25.ip";
 connectAttr "polyMapSewMove25.out" "polyTweakUV4.ip";
-connectAttr "e_4.oc" "Railway_Texture.bc";
-connectAttr "e_1.oa" "Railway_Texture.m";
-connectAttr "aiNormalMap1.out" "Railway_Texture.n";
-connectAttr "e_3.oa" "Railway_Texture.sr";
-connectAttr "Railway_Texture.oc" "openPBRSurface1SG.ss";
+connectAttr ":defaultArnoldDenoiser.msg" ":defaultArnoldRenderOptions.imagers" -na
+		;
+connectAttr ":defaultArnoldDisplayDriver.msg" ":defaultArnoldRenderOptions.drivers"
+		 -na;
+connectAttr ":defaultArnoldFilter.msg" ":defaultArnoldRenderOptions.filt";
+connectAttr ":defaultArnoldDriver.msg" ":defaultArnoldRenderOptions.drvr";
+connectAttr "e_1.oc" "RailwayTexture.bc";
+connectAttr "e_3.oa" "RailwayTexture.m";
+connectAttr "aiNormalMap2.out" "RailwayTexture.n";
+connectAttr "e_5.oa" "RailwayTexture.sr";
+connectAttr "RailwayTexture.oc" "openPBRSurface1SG.ss";
 connectAttr "pCube4Shape.iog" "openPBRSurface1SG.dsm" -na;
 connectAttr "openPBRSurface1SG.msg" "materialInfo1.sg";
-connectAttr "Railway_Texture.msg" "materialInfo1.m";
-connectAttr "e_4.msg" "materialInfo1.t" -na;
+connectAttr "RailwayTexture.msg" "materialInfo1.m";
+connectAttr "e_1.msg" "materialInfo1.t" -na;
 connectAttr ":defaultColorMgtGlobals.cme" "e_1.cme";
 connectAttr ":defaultColorMgtGlobals.cfe" "e_1.cmcf";
 connectAttr ":defaultColorMgtGlobals.cfp" "e_1.cmcp";
@@ -1567,56 +1559,45 @@ connectAttr "place2dTexture5.vt3" "e_5.vt3";
 connectAttr "place2dTexture5.vc1" "e_5.vc1";
 connectAttr "place2dTexture5.o" "e_5.uv";
 connectAttr "place2dTexture5.ofs" "e_5.fs";
-connectAttr "e_2.oc" "aiNormalMap1.input";
-connectAttr ":defaultArnoldDenoiser.msg" ":defaultArnoldRenderOptions.imagers" -na
+connectAttr "e_4.oc" "aiNormalMap2.input";
+connectAttr "e_3.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
 		;
-connectAttr ":defaultArnoldDisplayDriver.msg" ":defaultArnoldRenderOptions.drivers"
-		 -na;
-connectAttr ":defaultArnoldFilter.msg" ":defaultArnoldRenderOptions.filt";
-connectAttr ":defaultArnoldDriver.msg" ":defaultArnoldRenderOptions.drvr";
-connectAttr "place2dTexture4.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
+connectAttr "e_5.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[1].dn"
 		;
-connectAttr "e_4.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[1].dn"
+connectAttr "place2dTexture4.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[2].dn"
 		;
-connectAttr "place2dTexture1.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[2].dn"
+connectAttr "e_4.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[3].dn"
 		;
-connectAttr "place2dTexture2.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[3].dn"
+connectAttr "place2dTexture1.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[4].dn"
 		;
-connectAttr "e_5.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[4].dn"
+connectAttr "aiNormalMap2.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[5].dn"
 		;
-connectAttr "place2dTexture5.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[5].dn"
+connectAttr "openPBRSurface1SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[6].dn"
 		;
-connectAttr "e_1.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[6].dn"
+connectAttr "place2dTexture5.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[7].dn"
 		;
-connectAttr "place2dTexture3.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[7].dn"
+connectAttr "RailwayTexture.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[8].dn"
 		;
-connectAttr "e_2.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[8].dn"
+connectAttr "place2dTexture3.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[9].dn"
 		;
-connectAttr "Railway_Texture.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[9].dn"
-		;
-connectAttr "e_3.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[10].dn"
-		;
-connectAttr "openPBRSurface1SG.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[11].dn"
-		;
-connectAttr "aiAreaLightShape1.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[12].dn"
-		;
-connectAttr "aiNormalMap1.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[13].dn"
+connectAttr "e_1.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[10].dn"
 		;
 connectAttr "openPBRSurface1SG.pa" ":renderPartition.st" -na;
-connectAttr "Railway_Texture.msg" ":defaultShaderList1.s" -na;
+connectAttr "RailwayTexture.msg" ":defaultShaderList1.s" -na;
+connectAttr "aiNormalMap1.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture1.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture2.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture3.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture4.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "place2dTexture5.msg" ":defaultRenderUtilityList1.u" -na;
-connectAttr "aiNormalMap1.msg" ":defaultRenderUtilityList1.u" -na;
+connectAttr "aiNormalMap2.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
-connectAttr "aiAreaLightShape1.ltd" ":lightList1.l" -na;
+connectAttr "aiSkyDomeLightShape1.ltd" ":lightList1.l" -na;
 connectAttr "e_1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "e_2.msg" ":defaultTextureList1.tx" -na;
 connectAttr "e_3.msg" ":defaultTextureList1.tx" -na;
 connectAttr "e_4.msg" ":defaultTextureList1.tx" -na;
 connectAttr "e_5.msg" ":defaultTextureList1.tx" -na;
 connectAttr "groupId1.msg" ":initialShadingGroup.gn" -na;
-connectAttr "aiAreaLight1.iog" ":defaultLightSet.dsm" -na;
+connectAttr "aiSkyDomeLight1.iog" ":defaultLightSet.dsm" -na;
 // End of OrnateRailway.ma
